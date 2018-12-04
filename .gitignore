@@ -1,0 +1,5 @@
+print/META-INF/*
+print/WEB-INF/*
+print/favicon.ico
+print/index.html
+print/mapfish_transparent.png
