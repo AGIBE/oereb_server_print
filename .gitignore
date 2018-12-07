@@ -3,3 +3,4 @@ print/WEB-INF/*
 print/favicon.ico
 print/index.html
 print/mapfish_transparent.png
+*.code-workspace
