@@ -141,6 +141,7 @@ templates:
                             dpi: 144
                             zoomToFeatures:
                                 minScale: 0
+                                minMargin: 30
                     baseLayers: !staticLayers {}
 
                     ResponsibleOffice_Name: !string #/definitions/MultilingualText
@@ -234,6 +235,7 @@ templates:
                     dpi: 144
                     zoomToFeatures:
                         minScale: 0
+                        minMargin: 30
             baseLayers: !staticLayers {}
             overlayLayers: !staticLayers
                 default:
