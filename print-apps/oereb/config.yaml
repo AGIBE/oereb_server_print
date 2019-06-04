@@ -145,6 +145,7 @@ templates:
                             dpi: 144
                             zoomToFeatures:
                                 minScale: 0
+                                minMargin: 30
                     baseLayers: !staticLayers {}
 
                     ResponsibleOffice_Name: !string #/definitions/MultilingualText
@@ -245,6 +246,7 @@ templates:
                     dpi: 144
                     zoomToFeatures:
                         minScale: 0
+                        minMargin: 30
             baseLayers: !staticLayers {}
             overlayLayers: !staticLayers
                 default:
@@ -266,33 +268,6 @@ templates:
         processors:
         - !reportBuilder # compile all reports in current directory
             directory: '.'
-        - !configureHttpRequests
-            httpProcessors:
-            - !mapUri    # NEEDED FOR DOCKER ENVIRONMENT
-                mapping:
-                  (https?)://localhost:6543/(.*): "http://wsgi:8080/$2"
-            - !forwardHeaders
-                headers:
-                - Referer
-            - !restrictUris
-                matchers:
-                - !dnsMatch    # NEEDED FOR DOCKER ENVIRONMENT
-                  host: wsgi
-                  port: 8080
-                  reject: false
-                - !ipMatch
-                  ip: 10.0.0.0
-                  mask: 255.0.0.0
-                  reject: true
-                - !ipMatch
-                  ip: 172.16.0.0
-                  mask: 255.240.0.0
-                  reject: true
-                - !ipMatch
-                  ip: 192.168.0.0
-                  mask: 255.255.0.0
-                  reject: true
-                - !acceptAll {}
         - !addOverlayLayers
             inputMapper:
                 overlayLayers: staticLayers
