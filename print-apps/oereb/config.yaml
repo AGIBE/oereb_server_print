@@ -1,13 +1,11 @@
 throwErrorOnExtraParameters: false
 
 resourceBundle: Report
-defaultToSvg: true
 
 templates:
     A4 portrait: !template
         reportTemplate: pdfextract.jrxml
         outputFilename: ${yyyyMMddhhmmss}_extract
-        allowTransparency: false
         attributes:
             CreationDate: !string {}
             Signature: !string &optStr
@@ -234,7 +232,7 @@ templates:
                   align: "center"
                   padding: 2
                   lineWidth: 1
-                  backgroundColor: "rgb(255, 255, 255)"
+                  backgroundColor: "rgba(255, 255, 255, 255)"
             features: !features {}
             map: !map
                 maxDpi: 254
