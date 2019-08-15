@@ -7,8 +7,8 @@
 	<field name="Name" class="java.lang.String"/>
 	<field name="OfficeAtWeb" class="java.lang.String"/>
 	<detail>
-		<band height="19" splitType="Stretch">
-			<textField>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
 				<reportElement mode="Transparent" x="0" y="0" width="300" height="15" isRemoveLineWhenBlank="true" uuid="083811f5-8641-45e8-84c7-ed0819bc3237">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -18,7 +18,7 @@
 				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="Reference" hyperlinkTarget="Blank">
-				<reportElement x="0" y="15" width="300" height="4" forecolor="#4C8FBA" uuid="43b94d8c-f86f-417d-83ec-78e70dcb55f8">
+				<reportElement x="0" y="16" width="300" height="4" forecolor="#4C8FBA" uuid="43b94d8c-f86f-417d-83ec-78e70dcb55f8">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
