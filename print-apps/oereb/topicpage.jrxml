@@ -374,7 +374,7 @@
 				<box topPadding="3" bottomPadding="3"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Cadastra" size="6"/>
-					<paragraph leftIndent="8" spacingBefore="0" spacingAfter="2"/>
+					<paragraph leftIndent="0" spacingBefore="0" spacingAfter="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($F{legend}.equals("") || $F{legend} == null) ? null : $F{legend}]]></textFieldExpression>
 				<hyperlinkReferenceExpression><![CDATA[($F{legend}.equals("") || $F{legend} == null) ? null : $F{legend}]]></hyperlinkReferenceExpression>
