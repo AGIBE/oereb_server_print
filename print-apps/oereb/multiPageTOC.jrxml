@@ -153,7 +153,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="143">
+		<band height="129">
 			<textField>
 				<reportElement x="0" y="60" width="493" height="22" uuid="596ac5cd-c22b-45eb-aa46-4891db028f3d">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
