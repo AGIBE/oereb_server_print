@@ -1,11 +1,13 @@
 throwErrorOnExtraParameters: false
 
 resourceBundle: Report
+defaultToSvg: true
 
 templates:
     A4 portrait: !template
         reportTemplate: pdfextract.jrxml
         outputFilename: ${yyyyMMddhhmmss}_extract
+        allowTransparency: false
         attributes:
             CreationDate: !string {}
             Signature: !string &optStr
@@ -41,7 +43,10 @@ templates:
             MunicipalityLogo: *optStr
             MunicipalityLogoRef: *optStr
             ExtractIdentifier: !string {}
-            Certification: !string {} #/definitions/MultilingualMText
+            Certification: !string #/definitions/MultilingualMText
+              default: ""
+            CertificationAtWeb: !string #/definitions/MultilingualMText
+              default: ""
             Footer: !string {}
             QRCode: *optStr
             QRCodeRef: *optStr
@@ -87,6 +92,8 @@ templates:
                                 default: ''
                             LengthShare: !string
                                 default: ''
+                            NrOfPoints: !string
+                                default: ''
                             SymbolRef: !string
                                 default: ''
                             Information: !string #/definitions/MultilingualMText
@@ -126,7 +133,7 @@ templates:
                             dpi: 144
                             zoomToFeatures:
                                 minScale: 0
-                                minMargin: 42
+                                minMargin: 10 # This value must be the same as the pyramid_oereb print buffer.
                     baseLayers: !staticLayers {}
 
                     ResponsibleOffice_Name: !string #/definitions/MultilingualText
@@ -150,7 +157,10 @@ templates:
                     LegalProvisions: !datasource
                         default: []
                         attributes: &lpra
-                            TextAtWeb: !string {} #/definitions/MultilingualUri
+                            TextAtWeb: !datasource
+                                default: []
+                                attributes:
+                                    URL: *optStr #/definitions/MultilingualUri
                             Lawstatus_Code: *optStr
                             Lawstatus_Text: *optStr #/definitions/LocalisedText
                             Number: *optStr #/definitions/ArticleNumber
@@ -215,7 +225,7 @@ templates:
                   align: "center"
                   padding: 2
                   lineWidth: 1
-                  backgroundColor: "rgba(255, 255, 255, 255)"
+                  backgroundColor: "rgb(255, 255, 255)"
             features: !features {}
             map: !map
                 maxDpi: 254
@@ -227,7 +237,7 @@ templates:
                     dpi: 144
                     zoomToFeatures:
                         minScale: 0
-                        minMargin: 42
+                        minMargin: 10 # This value must be the same as the pyramid_oereb print buffer.
             baseLayers: !staticLayers {}
             overlayLayers: !staticLayers
                 default:
@@ -242,9 +252,9 @@ templates:
                             -   type: polygon
                                 fillColor: "#ff0000"
                                 fillOpacity: 0.0
-                                strokeColor: "#ff0000"
-                                strokeOpacity: 1.0
-                                strokeWidth: 0.75
+                                strokeColor: "#e60000"
+                                strokeOpacity: 0.60
+                                strokeWidth: 5
 
         processors:
         - !reportBuilder # compile all reports in current directory
@@ -300,19 +310,25 @@ templates:
                 outputMapper:
                     jrDataSource: OtherLegendDataSource
             - !createDataSource
-                processors: []
+                processors: &dsrc
+                - !createDataSource
+                    processors: []
+                    inputMapper:
+                        TextAtWeb: datasource
+                    outputMapper:
+                        jrDataSource: TextAtWebDataSource
                 inputMapper:
                     LegalProvisions: datasource
                 outputMapper:
                     jrDataSource: LegalProvisionsDataSource
             - !createDataSource
-                processors: []
+                processors: *dsrc
                 inputMapper:
                     Hints: datasource
                 outputMapper:
                     jrDataSource: HintsDataSource
             - !createDataSource
-                processors: []
+                processors: *dsrc
                 inputMapper:
                     Laws: datasource
                 outputMapper:

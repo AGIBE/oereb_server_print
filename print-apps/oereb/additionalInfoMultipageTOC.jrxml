@@ -163,7 +163,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$R{TableofContentLabel}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField>
 				<reportElement x="0" y="97" width="493" height="15" uuid="26bc8336-77bd-4624-92a9-58bb947c6098">
 					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
 				</reportElement>
@@ -194,7 +194,7 @@
 		<band height="63">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<textField isStretchWithOverflow="true">
+			<textField>
 				<reportElement key="" x="0" y="28" width="493" height="15" uuid="de8e740f-3672-4620-8d7d-b68c68018d9f">
 					<printWhenExpression><![CDATA["hallo" == "hallo"]]></printWhenExpression>
 				</reportElement>
