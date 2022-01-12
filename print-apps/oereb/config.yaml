@@ -1,13 +1,13 @@
 throwErrorOnExtraParameters: false
 
-# proxies:
-#   - !proxy
-#     scheme: http
-#     host: {PROXY_HOST}
-#     port: {PROXY_PORT}
-#     matchers:
-#       - !hostnameMatch
-#         host: wms.geo.admin.ch
+proxies:
+  - !proxy
+    scheme: http
+    host: {PROXY_HOST}
+    port: {PROXY_PORT}
+    matchers:
+      - !hostnameMatch
+        host: wms.geo.admin.ch
 
 resourceBundle: Report
 defaultToSvg: true
@@ -16,7 +16,7 @@ templates:
     A4 portrait: !template
         reportTemplate: pdfextract.jrxml
         outputFilename: ${yyyyMMddhhmmss}_extract
-        pdfA: true
+        pdfA: false
         attributes:
             CreationDate: !string {}
             Signature: !string &optStr
@@ -55,9 +55,11 @@ templates:
             Footer: !string {}
             QRCode: *optStr
             QRCodeRef: *optStr
-            GeneralInformation: !string #/definitions/MultilingualMText
-                default: 'Disclaimer'
-            UpdateDateOS: !string {}
+            GeneralInformation: !datasource
+                default: []
+                attributes:
+                  Info: !string {}
+            UpdateDateCS: !string {}
             Glossary: !datasource
                 default:
                   - Title: 'No term'
@@ -70,13 +72,13 @@ templates:
             RealEstate_EGRID: !string {}
             RealEstate_Type_Text: !string {}
             RealEstate_Canton: !string {}
-            RealEstate_Municipality: !string {}
+            RealEstate_MunicipalityName: !string {}
             RealEstate_SubunitOfLandRegister: *optStr
             Display_RealEstate_SubunitOfLandRegister: !boolean
                 default: true
             Display_Certification: !boolean
                 default: true
-            RealEstate_FosNr: !string {}
+            RealEstate_MunicipalityCode: !string {}
             RealEstate_MetadataOfGeographicalBaseData: *optStr
             RealEstate_LandRegistryArea: !string {}
             RealEstate_RestrictionOnLandownership: !datasource
@@ -227,17 +229,6 @@ templates:
         processors:
         - !reportBuilder # compile all reports in current directory
             directory: '.'
-        # - !configureHttpRequests
-        #     httpProcessors:
-        #     - !mapUri # NEEDED FOR DOCKER ENVIRONMENT
-        #         mapping:
-        #           (https?)://localhost:6543/(.*): "http://oereb-server:6543/$2"
-        #     - !mapUri # NEEDED FOR DOCKER ENVIRONMENT (Oereblex port)
-        #         mapping:
-        #           (https?)://localhost:6544/(.*): "http://oereb-server:6543/$2"
-        #     - !forwardHeaders
-        #         headers:
-        #         - Referer
         - !addOverlayLayers
             inputMapper:
                 overlayLayers: staticLayers
@@ -249,6 +240,12 @@ templates:
         - !createMap {}
         - !createNorthArrow {}
         - !createScalebar {}
+        - !createDataSource
+            processors: []
+            inputMapper:
+                GeneralInformation: datasource
+            outputMapper:
+                jrDataSource: GeneralInformationDataSource
         - !createDataSource
             processors: []
             inputMapper:
