@@ -16,9 +16,9 @@
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<printWhenExpression><![CDATA[!($F{SymbolRef}.equals( "" ) || $F{SymbolRef} == null)]]></printWhenExpression>
 				</reportElement>
-				<box>
+				<!--<box>
 					<pen lineWidth="0.2"/>
-				</box>
+				</box>-->
 				<imageExpression><![CDATA[$F{SymbolRef}]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
