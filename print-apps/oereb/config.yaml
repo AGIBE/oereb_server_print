@@ -1,15 +1,15 @@
 throwErrorOnExtraParameters: false
 
-proxies:
-  - !proxy
-    scheme: http
-    host: {PROXY_HOST}
-    port: {PROXY_PORT}
-    matchers:
-      - !hostnameMatch
-        host: wms.geo.admin.ch
-      - !hostnameMatch
-        host: wfs.geodienste.ch
+# proxies:
+#   - !proxy
+#     scheme: http
+#     host: {PROXY_HOST}
+#     port: {PROXY_PORT}
+#     matchers:
+#       - !hostnameMatch
+#         host: wms.geo.admin.ch
+#       - !hostnameMatch
+#         host: wfs.geodienste.ch
 
 resourceBundle: Report
 defaultToSvg: true
@@ -228,8 +228,8 @@ templates:
                                 fillColor: "#ff0000"
                                 fillOpacity: 0.0
                                 strokeColor: "#e60000"
-                                strokeOpacity: 0.60
-                                strokeWidth: 5
+                                strokeOpacity: 1
+                                strokeWidth: 0.75
 
         processors:
         - !reportBuilder # compile all reports in current directory
