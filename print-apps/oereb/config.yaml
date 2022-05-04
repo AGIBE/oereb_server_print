@@ -228,7 +228,7 @@ templates:
                                 fillColor: "#ff0000"
                                 fillOpacity: 0.0
                                 strokeColor: "#e60000"
-                                strokeOpacity: 1
+                                strokeOpacity: 1.0
                                 strokeWidth: 0.75
 
         processors:
@@ -280,7 +280,7 @@ templates:
             inputMapper:
                 Disclaimer: datasource
             outputMapper:
-                jrDataSource: DisclaimerDataSource                
+                jrDataSource: DisclaimerDataSource
         - !createDataSource
             copyAttributes: [overlayLayers, style, features]
             processors:
