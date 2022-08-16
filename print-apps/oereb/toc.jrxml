@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TocReport main" pageWidth="595" pageHeight="842" columnWidth="493" leftMargin="51" rightMargin="51" topMargin="28" bottomMargin="20" whenResourceMissingType="Empty" uuid="6e74177b-d551-4a75-ae51-6cdde3f284ce">
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -40,7 +40,6 @@
 	<style name="HeadingIndex3" style="Heading3"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
 	<parameter name="BookmarkDataSource" class="net.sf.jasperreports.engine.JRDataSource"/>
-	<parameter name="isReduced" class="java.lang.Boolean"/>
 	<parameter name="ExtractIdentifier" class="java.lang.String"/>
 	<parameter name="CreationDate" class="java.lang.String"/>
 	<parameter name="Footer" class="java.lang.String"/>
@@ -52,19 +51,12 @@
 	<parameter name="MunicipalityLogoRef" class="java.lang.String"/>
 	<parameter name="LogoPLRCadastre" class="java.lang.String"/>
 	<parameter name="LogoPLRCadastreRef" class="java.lang.String"/>
-	<parameter name="PLRCadastreAuthority_UID" class="java.lang.String"/>
-	<parameter name="PLRCadastreAuthority_Name" class="java.lang.String"/>
-	<parameter name="PLRCadastreAuthority_OfficeAtWeb" class="java.lang.String"/>
-	<parameter name="PLRCadastreAuthority_Line1" class="java.lang.String"/>
-	<parameter name="PLRCadastreAuthority_Line2" class="java.lang.String"/>
-	<parameter name="PLRCadastreAuthority_Street" class="java.lang.String"/>
-	<parameter name="PLRCadastreAuthority_Number" class="java.lang.String"/>
-	<parameter name="PLRCadastreAuthority_PostalCode" class="java.lang.String"/>
-	<parameter name="PLRCadastreAuthority_City" class="java.lang.String"/>
+	<parameter name="PrintCantonLogo" class="java.lang.Boolean"/>
 	<parameter name="Signature" class="java.lang.String"/>
-	<parameter name="BaseData" class="java.lang.String"/>
-	<parameter name="GeneralInformation" class="java.lang.String"/>
-	<parameter name="ExclusionOfLiabilityDataSource" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="GeneralInformationDataSource" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="DisclaimerLandRegister_Title" class="java.lang.String"/>
+	<parameter name="DisclaimerLandRegister_Content" class="java.lang.String"/>
+	<parameter name="DisclaimerDataSource" class="net.sf.jasperreports.engine.JRDataSource"/>
 	<parameter name="ConcernedThemeDataSource" class="net.sf.jasperreports.engine.JRDataSource"/>
 	<parameter name="NotConcernedThemeDataSource" class="net.sf.jasperreports.engine.JRDataSource"/>
 	<parameter name="ThemeWithoutDataDataSource" class="net.sf.jasperreports.engine.JRDataSource"/>
@@ -72,8 +64,8 @@
 	<parameter name="QRCodeRef" class="java.lang.String"/>
 	<parameter name="RealEstate_Number" class="java.lang.String"/>
 	<parameter name="RealEstate_EGRID" class="java.lang.String"/>
-	<parameter name="RealEstate_Municipality" class="java.lang.String"/>
-	<parameter name="RealEstate_FosNr" class="java.lang.String"/>
+	<parameter name="RealEstate_MunicipalityName" class="java.lang.String"/>
+	<parameter name="RealEstate_MunicipalityCode" class="java.lang.String"/>
 	<parameter name="RealEstate_LandRegistryArea" class="java.lang.String"/>
 	<parameter name="RealEstate_SubunitOfLandRegister" class="java.lang.String"/>
 	<parameter name="TOC_Appendices" class="java.util.Map"/>
@@ -84,74 +76,52 @@
 	<pageHeader>
 		<band height="60">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<image scaleImage="RetainShape" hAlign="Center">
-				<reportElement x="0" y="0" width="124" height="40" uuid="cf244674-e3aa-4c26-a00a-d6e9ecce9958">
-					<property name="local_mesure_unitx" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
-					<property name="local_mesure_unity" value="mm"/>
-					<property name="local_mesure_unitwidth" value="mm"/>
-					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
-					<property name="local_mesure_unitheight" value="mm"/>
-					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
-				</reportElement>
-				<imageExpression><![CDATA[$P{FederalLogoRef}]]></imageExpression>
-			</image>
-			<image hAlign="Center">
-				<reportElement x="170" y="0" width="85" height="28" uuid="4e47be90-0b29-4b21-9927-be7e17a08e66">
-					<property name="local_mesure_unitx" value="pixel"/>
-					<property name="local_mesure_unity" value="pixel"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="local_mesure_unitheight" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<imageExpression><![CDATA[$P{CantonalLogoRef}]]></imageExpression>
-			</image>
-			<image hAlign="Center" onErrorType="Blank">
-				<reportElement x="269" y="0" width="85" height="28" uuid="61c41ba3-9b96-48ac-b21a-e8c44dd887b5">
-					<property name="local_mesure_unitx" value="pixel"/>
-					<property name="local_mesure_unity" value="pixel"/>
-					<property name="local_mesure_unitheight" value="pixel"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
+			<subreport>
+				<reportElement stretchType="ContainerBottom" x="0" y="0" width="493" height="55" uuid="5593ce53-3995-4d63-8aaa-ed11b332a8a6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+					<printWhenExpression><![CDATA[$P{PrintCantonLogo}]]></printWhenExpression>
 				</reportElement>
-				<imageExpression><![CDATA[$P{MunicipalityLogoRef}]]></imageExpression>
-			</image>
-			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="269" y="29" width="85" height="15" uuid="31fc5499-78b7-4ae1-880e-e93d48c7c9a2">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font fontName="Cadastra" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{RealEstate_Municipality}]]></textFieldExpression>
-			</textField>
-			<line>
-				<reportElement x="0" y="56" width="493" height="1" uuid="2c7bc46a-93be-4dfe-b2ea-273b4e077203">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				<subreportParameter name="FederalLogoRef">
+					<subreportParameterExpression><![CDATA[$P{FederalLogoRef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CantonalLogoRef">
+					<subreportParameterExpression><![CDATA[$P{CantonalLogoRef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="MunicipalityLogoRef">
+					<subreportParameterExpression><![CDATA[$P{MunicipalityLogoRef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LogoPLRCadastreRef">
+					<subreportParameterExpression><![CDATA[$P{LogoPLRCadastreRef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RealEstate_MunicipalityName">
+					<subreportParameterExpression><![CDATA[$P{RealEstate_MunicipalityName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA["titleAllLogos.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement stretchType="ContainerBottom" x="0" y="0" width="493" height="55" uuid="8d02619a-351b-4959-914a-8765f2f8dd02">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[!$P{PrintCantonLogo}]]></printWhenExpression>
 				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.2" lineStyle="Solid"/>
-				</graphicElement>
-			</line>
-			<image hAlign="Center">
-				<reportElement x="394" y="0" width="99" height="28" uuid="8192d808-4d37-4eb7-adce-086d5702197f">
-					<property name="local_mesure_unitx" value="pixel"/>
-					<property name="local_mesure_unity" value="pixel"/>
-					<property name="local_mesure_unitheight" value="pixel"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
-					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
-				</reportElement>
-				<imageExpression><![CDATA[$P{LogoPLRCadastreRef}]]></imageExpression>
-			</image>
+				<subreportParameter name="FederalLogoRef">
+					<subreportParameterExpression><![CDATA[$P{FederalLogoRef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CantonalLogoRef">
+					<subreportParameterExpression><![CDATA[$P{CantonalLogoRef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="MunicipalityLogoRef">
+					<subreportParameterExpression><![CDATA[$P{MunicipalityLogoRef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LogoPLRCadastreRef">
+					<subreportParameterExpression><![CDATA[$P{LogoPLRCadastreRef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RealEstate_MunicipalityName">
+					<subreportParameterExpression><![CDATA[$P{RealEstate_MunicipalityName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA["titleNoCantonLogo.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</pageHeader>
 	<detail>
@@ -168,7 +138,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$R{TableofContentLabel}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement x="0" y="62" width="493" height="15" isPrintWhenDetailOverflows="true" uuid="fc1f09ca-765a-4b69-94c2-d92ffec662f7">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -180,10 +150,10 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Top">
-					<font fontName="Cadastra" size="9" isBold="true"/>
-					<paragraph spacingAfter="3"/>
+					<font fontName="Cadastra" size="8" isBold="true"/>
+					<paragraph lineSpacingSize="11.0" spacingAfter="3"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Display_RealEstate_SubunitOfLandRegister} && !$P{RealEstate_SubunitOfLandRegister}.equals("")? String.format($R{Topicsaffectingtherealestate_ofthemunicipalityof_}, $P{RealEstate_Number}, $P{RealEstate_Municipality}, (", "+$P{RealEstate_SubunitOfLandRegister})) : String.format($R{Topicsaffectingtherealestate_ofthemunicipalityof_}, $P{RealEstate_Number}, $P{RealEstate_Municipality},"")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{Display_RealEstate_SubunitOfLandRegister} && !$P{RealEstate_SubunitOfLandRegister}.equals("")? String.format($R{Topicsaffectingtherealestate_ofthemunicipalityof_}, $P{RealEstate_Number}, $P{RealEstate_MunicipalityName}, (", "+$P{RealEstate_SubunitOfLandRegister})) : String.format($R{Topicsaffectingtherealestate_ofthemunicipalityof_}, $P{RealEstate_Number}, $P{RealEstate_MunicipalityName},"")]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="29">
@@ -196,16 +166,13 @@
 				<subreportParameter name="TOC_Appendices">
 					<subreportParameterExpression><![CDATA[$P{TOC_Appendices}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="isReduced">
-					<subreportParameterExpression><![CDATA[$P{isReduced}]]></subreportParameterExpression>
-				</subreportParameter>
 				<subreportParameter name="page_counter">
 					<subreportParameterExpression><![CDATA[$P{nbTocPages}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[$P{BookmarkDataSource}]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{isReduced}?"tocReduced.jasper":"tocFull.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["tocConcernedTheme.jasper"]]></subreportExpression>
 			</subreport>
-			<textField isStretchWithOverflow="true" evaluationTime="Report">
+			<textField textAdjust="StretchHeight" evaluationTime="Report">
 				<reportElement stretchType="RelativeToTallestObject" x="0" y="2" width="492" height="10" uuid="74048771-76de-4810-825e-77d4e5643dd3">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -218,28 +185,15 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Top">
-					<font fontName="Cadastra" size="7" isBold="true"/>
+					<font fontName="Cadastra" size="6" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ConcernedThemeDataSource} instanceof net.sf.jasperreports.engine.JREmptyDataSource ? $R{NoPLR} : $R{TOCPageLabel}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="232" y="2" width="261" height="10" uuid="0bae6376-40d3-4a91-ada1-04236d63c54c">
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<printWhenExpression><![CDATA[!($P{isReduced})]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Top">
-					<font fontName="Cadastra" size="7" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{AppendicesLabel}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="61">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement x="0" y="26" width="493" height="15" uuid="26bc8336-77bd-4624-92a9-58bb947c6098">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
@@ -247,7 +201,8 @@
 					<bottomPen lineWidth="0.2"/>
 				</box>
 				<textElement verticalAlignment="Top">
-					<font fontName="Cadastra" size="9" isBold="true"/>
+					<font fontName="Cadastra" size="8" isBold="true"/>
+					<paragraph lineSpacingSize="11.0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{Topicsnotaffectingtherealestate}]]></textFieldExpression>
 			</textField>
@@ -265,7 +220,7 @@
 		<band height="44">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement key="" x="0" y="26" width="493" height="15" uuid="de8e740f-3672-4620-8d7d-b68c68018d9f">
 					<property name="com.jaspersoft.studio.unit.spacingAfter" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -275,13 +230,13 @@
 					<bottomPen lineWidth="0.2"/>
 				</box>
 				<textElement verticalAlignment="Top">
-					<font fontName="Cadastra" size="9" isBold="true"/>
-					<paragraph spacingAfter="10"/>
+					<font fontName="Cadastra" size="8" isBold="true"/>
+					<paragraph lineSpacingSize="11.0" spacingAfter="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{Topicswithoutdata}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="15" splitType="Prevent">
+		<band height="93" splitType="Prevent">
 			<subreport overflowType="Stretch">
 				<reportElement x="0" y="0" width="493" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="69f8d05f-fe14-473e-8c01-942aba0d9b54">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
@@ -293,59 +248,33 @@
 				<subreportExpression><![CDATA["themelist.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="90">
+		<band height="39" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<subreport overflowType="Stretch">
-				<reportElement isPrintRepeatedValues="false" x="260" y="39" width="233" height="46" uuid="9fd65c2b-a447-43f1-88f6-9a41a9ca02be">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<subreport>
+				<reportElement stretchType="ContainerHeight" x="0" y="0" width="240" height="38" uuid="88178e0e-d18d-473b-8c4b-6548d2154fb1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<dataSourceExpression><![CDATA[$P{ExclusionOfLiabilityDataSource}]]></dataSourceExpression>
-				<subreportExpression><![CDATA["exclusion_of_liability.jasper"]]></subreportExpression>
+				<subreportParameter name="GeneralInformationLabel">
+					<subreportParameterExpression><![CDATA[$R{GeneralInformationLabel}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DisclaimerLandRegister_Title">
+					<subreportParameterExpression><![CDATA[$P{DisclaimerLandRegister_Title}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DisclaimerLandRegister_Content">
+					<subreportParameterExpression><![CDATA[$P{DisclaimerLandRegister_Content}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{GeneralInformationDataSource}]]></dataSourceExpression>
+				<subreportExpression><![CDATA["general_info_and_disclaimer.jasper"]]></subreportExpression>
 			</subreport>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="0" y="50" width="230" height="10" uuid="9463b6fb-b28a-4793-9bc1-1c24749e48c4">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<subreport>
+				<reportElement stretchType="ContainerBottom" x="252" y="0" width="240" height="21" isPrintInFirstWholeBand="true" uuid="547dff1a-158f-43e9-a578-cd61513d0e62">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
-					<font fontName="Cadastra" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{GeneralInformation}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="39" width="230" height="11" uuid="e8e72f34-6553-41ad-a3cd-75273b060f24">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Cadastra" size="6" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{GeneralInformationLabel}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement positionType="Float" x="0" y="65" width="230" height="10" uuid="85c6358a-de30-4b2c-a2b4-15d2925ed1e1">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Cadastra" size="6" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{BaseDataLabel}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="0" y="75" width="230" height="10" uuid="684f53e7-19a1-4d70-9d04-82bf62c78d03">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Cadastra" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{BaseData}]]></textFieldExpression>
-			</textField>
+				<dataSourceExpression><![CDATA[$P{DisclaimerDataSource}]]></dataSourceExpression>
+				<subreportExpression><![CDATA["disclaimer.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<pageFooter>

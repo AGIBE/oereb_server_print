@@ -8,6 +8,8 @@ proxies:
     matchers:
       - !hostnameMatch
         host: wms.geo.admin.ch
+      - !hostnameMatch
+        host: wfs.geodienste.ch
 
 resourceBundle: Report
 defaultToSvg: true
@@ -39,7 +41,6 @@ templates:
                 attributes:
                     Code: !string {}
                     Text: !string {} #/definitions/LocalisedText
-            isReduced: !boolean {}
             nbTocPages: !integer {}
             LogoPLRCadastre: *optStr
             LogoPLRCadastreRef: *optStr
@@ -49,15 +50,18 @@ templates:
             CantonalLogoRef: *optStr
             MunicipalityLogo: *optStr
             MunicipalityLogoRef: *optStr
+            PrintCantonLogo: !boolean {}
             ExtractIdentifier: !string {}
             Certification: *optStr #/definitions/MultilingualMText
             CertificationAtWeb: *optStr #/definitions/MultilingualMText
             Footer: !string {}
             QRCode: *optStr
             QRCodeRef: *optStr
-            GeneralInformation: !string #/definitions/MultilingualMText
-                default: 'Disclaimer'
-            BaseData: !string {} #/definitions/MultilingualMText
+            GeneralInformation: !datasource
+                default: []
+                attributes:
+                  Info: !string {}
+            UpdateDateCS: !string {}
             Glossary: !datasource
                 default:
                   - Title: 'No term'
@@ -68,15 +72,15 @@ templates:
             RealEstate_Number: !string {}
             RealEstate_IdentDN: !string {}
             RealEstate_EGRID: !string {}
-            RealEstate_Type: !string {}
+            RealEstate_Type_Text: !string {}
             RealEstate_Canton: !string {}
-            RealEstate_Municipality: !string {}
+            RealEstate_MunicipalityName: !string {}
             RealEstate_SubunitOfLandRegister: *optStr
             Display_RealEstate_SubunitOfLandRegister: !boolean
                 default: true
             Display_Certification: !boolean
                 default: true
-            RealEstate_FosNr: !string {}
+            RealEstate_MunicipalityCode: !string {}
             RealEstate_MetadataOfGeographicalBaseData: *optStr
             RealEstate_LandRegistryArea: !string {}
             RealEstate_RestrictionOnLandownership: !datasource
@@ -92,7 +96,7 @@ templates:
                             LengthShare: *optStr
                             NrOfPoints: *optStr
                             SymbolRef: *optStr
-                            Information: *optStr #/definitions/MultilingualMText
+                            LegendText: *optStr #/definitions/MultilingualMText
                     OtherLegend: !datasource
                         default: []
                         attributes:
@@ -102,13 +106,9 @@ templates:
                     Geom_Type: *optStr
                     Theme_Code: *optStr
                     Theme_Text: *optStr #/definitions/LocalisedText
-                    SubTheme: *optStr
-                    Split_SubTheme: !boolean
-                        default: false
                     Lawstatus_Code: *optStr
                     Lawstatus_Text: *optStr #/definitions/LocalisedText
                     Symbol: *optStr
-                    legend: !string {}
                     map: !map
                         maxDpi: 254
                         dpiSuggestions: [254]
@@ -143,7 +143,6 @@ templates:
                             Number: *optStr #/definitions/ArticleNumber
                             Text: *optStr #/definitions/MultilingualMText
                             Title: *optStr #/definitions/MultilingualText
-                            OfficialTitle: *optStr #/definitions/MultilingualText
                             Abbreviation: *optStr #/definitions/MultilingualText
                             OfficialNumber: *optStr
                             Canton: *optStr #/definitions/CantonCode
@@ -170,11 +169,13 @@ templates:
                         attributes:
                             Name: !string {}
                             OfficeAtWeb: *optStr
-            ExclusionOfLiability: !datasource
+            DisclaimerLandRegister_Title: !string {}
+            DisclaimerLandRegister_Content: !string {}
+            Disclaimer: !datasource
                 default: []
                 attributes:
-                    Title: !string {} #/definitions/MultilingualText
-                    Content: !string {} #/definitions/MultilingualText
+                    Content: !string {}
+                    Title: !string {}
             PLRCadastreAuthority_Name: !string {} #/definitions/MultilingualText
             PLRCadastreAuthority_OfficeAtWeb: *optStr #/definitions/WebReference
             PLRCadastreAuthority_UID: *optStr #/definitions/UID
@@ -247,6 +248,12 @@ templates:
         - !createDataSource
             processors: []
             inputMapper:
+                GeneralInformation: datasource
+            outputMapper:
+                jrDataSource: GeneralInformationDataSource
+        - !createDataSource
+            processors: []
+            inputMapper:
                 ConcernedTheme: datasource
             outputMapper:
                 jrDataSource: ConcernedThemeDataSource
@@ -268,6 +275,12 @@ templates:
                 Glossary: datasource
             outputMapper:
                 jrDataSource: GlossaryDataSource
+        - !createDataSource
+            processors: []
+            inputMapper:
+                Disclaimer: datasource
+            outputMapper:
+                jrDataSource: DisclaimerDataSource
         - !createDataSource
             copyAttributes: [overlayLayers, style, features]
             processors:
@@ -326,9 +339,3 @@ templates:
                 RealEstate_RestrictionOnLandownership: datasource
             outputMapper:
                 jrDataSource: RealEstate_RestrictionOnLandownershipDataSource
-        - !createDataSource
-            processors: []
-            inputMapper:
-                ExclusionOfLiability: datasource
-            outputMapper:
-                jrDataSource: ExclusionOfLiabilityDataSource
