@@ -51,6 +51,7 @@ templates:
             MunicipalityLogo: *optStr
             MunicipalityLogoRef: *optStr
             PrintCantonLogo: !boolean {}
+            PrintMunicipalityName: !boolean {}
             ExtractIdentifier: !string {}
             Certification: *optStr #/definitions/MultilingualMText
             CertificationAtWeb: *optStr #/definitions/MultilingualMText
