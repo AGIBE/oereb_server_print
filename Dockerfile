@@ -1,4 +1,4 @@
-FROM camptocamp/mapfish_print:3.30
+FROM camptocamp/mapfish_print:3.29
 
 RUN apt update && apt-get install --assume-yes gosu && apt-get clean && rm --force --recursive /var/lib/apt/lists/*
 
