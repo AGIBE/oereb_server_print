@@ -1,15 +1,15 @@
 throwErrorOnExtraParameters: false
 
-# proxies:
-#   - !proxy
-#     scheme: http
-#     host: {PROXY_HOST}
-#     port: {PROXY_PORT}
-#     matchers:
-#       - !hostnameMatch
-#         host: wms.geo.admin.ch
-#       - !hostnameMatch
-#         host: geodienste.ch
+proxies:
+  - !proxy
+    scheme: http
+    host: {PROXY_HOST}
+    port: {PROXY_PORT}
+    matchers:
+      - !hostnameMatch
+        host: wms.geo.admin.ch
+      - !hostnameMatch
+        host: geodienste.ch
 
 resourceBundle: Report
 defaultToSvg: true
