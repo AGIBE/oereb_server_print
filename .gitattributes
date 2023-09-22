@@ -1,0 +1,16 @@
+# Mit podman gibt es Probleme mit den Shellscripts.
+# Diese müssen die Linux-Zeilenendung LF (nicht CRLF)
+# aufweisen. Alle übrigen Files können so bleiben, wie
+# sie sind. Daher reicht die Git-Standardeinstellung
+# core.autocrlf=true nicht aus. Es müssen Ausnahmen
+# definiert werden. Das geschieht hier.
+# https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings?platform=windows
+
+# core.autocrlf für alle Dateien
+* text=auto
+
+# Ausnahme für das Shell-Script
+run_mfp_oereb.sh text eol=lf
+
+# Ausnahmen für Binary-Files
+*.jar binary
