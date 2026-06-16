@@ -1,15 +1,15 @@
 throwErrorOnExtraParameters: false
 
-proxies:
-  - !proxy
-    scheme: http
-    host: {PROXY_HOST}
-    port: {PROXY_PORT}
-    matchers:
-      - !hostnameMatch
-        host: wms.geo.admin.ch
-      - !hostnameMatch
-        host: geodienste.ch
+# proxies:
+#   - !proxy
+#     scheme: http
+#     host: {PROXY_HOST}
+#     port: {PROXY_PORT}
+#     matchers:
+#       - !hostnameMatch
+#         host: wms.geo.admin.ch
+#       - !hostnameMatch
+#         host: geodienste.ch
 
 resourceBundle: Report
 defaultToSvg: true
@@ -51,7 +51,6 @@ templates:
             MunicipalityLogo: *optStr
             MunicipalityLogoRef: *optStr
             PrintCantonLogo: !boolean {}
-            PrintMunicipalityName: !boolean {}
             ExtractIdentifier: !string {}
             Certification: *optStr #/definitions/MultilingualMText
             CertificationAtWeb: *optStr #/definitions/MultilingualMText
@@ -76,6 +75,7 @@ templates:
                 default: None
             RealEstate_Type_Text: !string {}
             RealEstate_Canton: !string {}
+            PrintMunicipalityName: !boolean {}
             RealEstate_MunicipalityName: !string {}
             RealEstate_SubunitOfLandRegister: *optStr
             Display_RealEstate_SubunitOfLandRegister: !boolean
