@@ -6,7 +6,7 @@ on:
       tag:
         description: "Versions-Tag"
         required: true
-        type: text
+        type: string
 
 jobs:
 
@@ -21,8 +21,11 @@ jobs:
     - name: Podman-Version checken
       run: podman --version
 
-    - name: Image bauen
-      run: podman build -t oereb_server_print:${{ inputs.tag }} .
+    - name: Registry anmelden
+      run: echo "${{ secrets.GHCR_TOKEN }}" | podman login ghcr.io -u ${{ github.actor }} --password-stdin
 
-    - name: Image taggen
-      run: podman image tag oereb_server_print:${{ inputs.tag }} ghcr.io/agibe/oereb_server_print:${{ inputs.tag }}
+    - name: Image bauen
+      run: podman build -t ghcr.io/agibe/oereb_server_print:${{ inputs.tag }} .
+
+    - name: Image pushen
+      run: podman image push ghcr.io/agibe/oereb_server_print:${{ inputs.tag }}

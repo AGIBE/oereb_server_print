@@ -1,8 +1,11 @@
 FROM camptocamp/mapfish_print:4.0
 
+LABEL org.opencontainers.image.source=https://github.com/AGIBE/oereb_server_print
+LABEL org.opencontainers.image.description="ÖREB-Server Kanton Bern - Print Engine"
+
 RUN apt update && apt-get install --assume-yes gosu && apt-get clean && rm --force --recursive /var/lib/apt/lists/*
 
-ENV TINI_VERSION v0.19.0
+ENV TINI_VERSION=v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/local/tomcat/bin/tini
 
 COPY ./print-apps /usr/local/tomcat/webapps/ROOT/print-apps
