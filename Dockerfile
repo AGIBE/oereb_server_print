@@ -13,7 +13,7 @@ COPY ./run_mfp_oereb.sh /usr/local/tomcat/bin/
 
 WORKDIR /usr/local/tomcat/bin/
 RUN groupadd oereb && useradd -g oereb oerebrunner
-RUN chown -R oerebrunner:oereb /usr/local/tomcat/bin
+RUN chown -R oerebrunner:oereb /usr/local/tomcat
 RUN chown -R oerebrunner:oereb /usr/local/tomcat/webapps/ROOT/print-apps
 
 RUN chmod +x run_mfp_oereb.sh
